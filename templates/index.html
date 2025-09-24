@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Address Generator - fakexyz.com</title>
+    <link rel="stylesheet" href="{{ url_for('static_files', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Fake Address Generator</h1>
+        <p>Powered by <a href="https://fakexyz.com" target="_blank">fakexyz.com</a></p>
+    </header>
+
+    <main>
+        <section id="api-status">
+            <h2>API Health Check</h2>
+            <div class="status-indicator">
+                <span id="health-light" class="light red"></span>
+                <span id="health-text">API Status: Unknown</span>
+            </div>
+            <p>Total Available Datasets: <span id="dataset-count">Loading...</span></p>
+            <p>Total Available Countries: <span id="country-count">Loading...</span></p>
+            <button id="check-api-health">Check API Health</button>
+        </section>
+
+        <section id="address-generator">
+            <h2>Generate Fake Address</h2>
+            <form id="country-select-form">
+                <label for="country-select">Select Country:</label>
+                <select id="country-select">
+                    <option value="">Random Address</option>
+                </select>
+                <button type="submit">Generate Address</button>
+            </form>
+            <div id="generated-address">
+                <!-- Generated address will be displayed here -->
+            </div>
+        </section>
+
+        <section id="api-documentation">
+            <h2>API Endpoints</h2>
+
+            <h3>1. Get a Country-Specific Random Address</h3>
+            <p><code>GET /api/address?code=<country_code></code></p>
+            <p><code>GET /api/address?name=<country_name></code></p>
+            <p>Use <code>code</code> for country codes (e.g., <code>US</code>, <code>BD</code>) or <code>name</code> for country names (e.g., <code>United States</code>, <code>Bangladesh</code>).</p>
+            <p>Returns a random fake address for the specified country. If the identifier is misspelled, it will provide a suggestion.</p>
+          
+            <h3>2. Get Available Countries and Data Counts</h3>
+            <p><code>GET /api/countries</code></p>
+            <p>Returns a JSON object with available country codes, their full names, and the number of datasets for each.</p>
+
+            <h3>3. Get a Fully Random Address</h3>
+            <p><code>GET /api/random</code></p>
+            <p>Returns a random fake address from any available country.</p>
+
+        <section id="available-countries">
+            <h2>Available Countries</h2>
+            <ul id="country-list">
+                <!-- Country list will be populated here by JavaScript -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Fake Address Generator. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static_files', filename='script.js') }}"></script>
+</body>
+</html>
